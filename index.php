@@ -62,6 +62,14 @@ switch ($service) {
             show_error(500, "500 Internal Server Error", $ex->getMessage());
         }
         break;
+    case 'install' :
+        validate_get();
+        try {
+            $service_result = include($service.'.php');
+        } catch (Exception $ex) {
+            show_error(500, "500 Internal Server Error", $ex->getMessage());
+        }
+        break;
     case 'savereferrer' :
         validate_post();
         $input = file_get_contents("php://input");
