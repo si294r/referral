@@ -17,6 +17,7 @@ $connection = new PDO(
     $ruser, $rpass
 );
 
+
 // create shorten_id if not exists
 $sql1 = "INSERT INTO referral_almighty_ios (swrve_user_id)
 SELECT :user_id1 WHERE NOT EXISTS (
@@ -34,7 +35,11 @@ $statement2 = $connection->prepare($sql2);
 $statement2->execute(array(':user_id' => $swrve_user_id));
 $row = $statement2->fetch(PDO::FETCH_ASSOC);
 
+$longurl = "https://api.alegrium.com/referral/redirect.php?shorten_id=".$row['shorten_id'];
+$contents = file_get_contents("https://api-ssl.bitly.com/v3/shorten?access_token=".BITLY_TOKEN."&longUrl=".urlencode($longurl));
+
 return array(
     'shorten_id' => $row['shorten_id'],
-    'swrve_user_id' => $row['swrve_user_id']
+    'swrve_user_id' => $row['swrve_user_id'],
+    'bityly' => json_decode($contents)
 );
