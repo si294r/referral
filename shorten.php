@@ -35,11 +35,8 @@ $statement2 = $connection->prepare($sql2);
 $statement2->execute(array(':user_id' => $swrve_user_id));
 $row = $statement2->fetch(PDO::FETCH_ASSOC);
 
-$longurl = "https://api.alegrium.com/referral/redirect.php?shorten_id=".$row['shorten_id'];
-$contents = file_get_contents("https://api-ssl.bitly.com/v3/shorten?access_token=".BITLY_TOKEN."&longUrl=".urlencode($longurl));
-
 return array(
     'shorten_id' => $row['shorten_id'],
     'swrve_user_id' => $row['swrve_user_id'],
-    'bityly' => json_decode($contents)
+    'shorten_url' => "http://almigh.tv/".base_convert($row['shorten_id'] + 100000, 10, 32)
 );

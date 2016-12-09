@@ -53,36 +53,28 @@ $params = explode("/", $query_string);
 
 $service = isset($params[0]) ? $params[0] : "";
 
+// validate service ...
 switch ($service) {
     case 'shorten' :
-        validate_get();
-        try {
-            $service_result = include($service.'.php');
-        } catch (Exception $ex) {
-            show_error(500, "500 Internal Server Error", $ex->getMessage());
-        }
-        break;
     case 'install' :
+    case 'check' :
         validate_get();
-        try {
-            $service_result = include($service.'.php');
-        } catch (Exception $ex) {
-            show_error(500, "500 Internal Server Error", $ex->getMessage());
-        }
         break;
     case 'savereferrer' :
         validate_post();
         $input = file_get_contents("php://input");
-        try {
-            $service_result = include($service.'.php');
-        } catch (Exception $ex) {
-            show_error(500, "500 Internal Server Error", $ex->getMessage());
-        }        
         break;
     default :
         show_error(503, "503 Service Unavailable", "Invalid Service");
 }
 
+// valid service goes here ... then try 'execute service' ...
+try {
+    $service_result = include($service.'.php');
+} catch (Exception $ex) {
+    show_error(500, "500 Internal Server Error", $ex->getMessage());
+}
+        
 $end_time = microtime(true);
 
 $service_result['execution_time'] = number_format($end_time - $start_time, 5);
