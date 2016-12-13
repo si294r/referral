@@ -25,5 +25,7 @@ $row = $statement2->fetch(PDO::FETCH_ASSOC);
 
 return array(
     'swrve_user_id' => $swrve_user_id,
-    'install' => $row['install']
+    'install' => $row['install'],
+    'error' => 0,
+    'message' => 'Success'
 );

@@ -40,11 +40,15 @@ $statement1->execute();
 // save referrer
 $sql2 = "UPDATE referral_almighty_ios "
         . "SET referrer = :referrer "
-        . "WHERE swrve_user_id = :user_id";
+        . "WHERE swrve_user_id = :user_id and referrer <> :referrer1";
 $statement2 = $connection->prepare($sql2);
 $statement2->bindParam(":referrer", $data['referrer']);
 $statement2->bindParam(":user_id", $data['swrve_user_id']);
+$statement2->bindParam(":referrer1", $data['referrer']);
 $statement2->execute();
-$row = $statement2->fetch(PDO::FETCH_ASSOC);
+
+$data['affected_row'] = $statement2->rowCount();
+$data['error'] = 0;
+$data['message'] = 'Success';
 
 return $data;

@@ -38,5 +38,7 @@ $row = $statement2->fetch(PDO::FETCH_ASSOC);
 return array(
     'shorten_id' => $row['shorten_id'],
     'swrve_user_id' => $row['swrve_user_id'],
-    'shorten_url' => "http://almigh.tv/".base_convert($row['shorten_id'] + 100000, 10, 32)
+    'shorten_url' => "http://almigh.tv/".base_convert($row['shorten_id'] + 100000, 10, 32),
+    'error' => 0,
+    'message' => 'Success'
 );
