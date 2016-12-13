@@ -18,14 +18,14 @@ $connection = new PDO(
 );
 
 // get count install
-$sql2 = "SELECT count(*) as install FROM referral_almighty_ios WHERE referrer = :user_id";
+$sql2 = "SELECT count(*) as count_install FROM referral_almighty_ios WHERE referrer = :user_id";
 $statement2 = $connection->prepare($sql2);
 $statement2->execute(array(':user_id' => $swrve_user_id));
 $row = $statement2->fetch(PDO::FETCH_ASSOC);
 
 return array(
     'swrve_user_id' => $swrve_user_id,
-    'install' => $row['install'],
+    'count_install' => $row['count_install'],
     'error' => 0,
     'message' => 'Success'
 );

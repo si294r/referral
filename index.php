@@ -56,7 +56,7 @@ $service = isset($params[0]) ? $params[0] : "";
 // validate service ...
 switch ($service) {
     case 'shorten' :
-    case 'checkinstall' :
+    case 'countinstall' :
         validate_get();
         break;
     case 'savereferrer' :
