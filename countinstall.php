@@ -15,7 +15,7 @@ if (trim($swrve_user_id) == "") {
 if (is_numeric($count_install)) {
     return array(
         'swrve_user_id' => $swrve_user_id,
-        'count_install' => $count_install,
+        'count_install' => (int)$count_install,
         'error' => 0,
         'message' => 'Success'
     );
