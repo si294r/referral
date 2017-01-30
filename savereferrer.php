@@ -23,7 +23,7 @@ if (trim($data['referrer']) == "") {
 include("/var/www/redshift-config2.php");
 $connection = new PDO(
     "pgsql:dbname=$rdatabase;host=$rhost;port=$rport",
-    $ruser, $rpass
+    $ruser, $rpass, array(PDO::ATTR_PERSISTENT => true)
 );
 
 // create record if not exists
