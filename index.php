@@ -5,7 +5,7 @@ $start_time = microtime(true);
 define('IS_DEVELOPMENT', FALSE);
 require '/var/www/token.php';
 
-show_error(503, "503 Service Unavailable", "We are currently under maintenance.");
+//show_error(503, "503 Service Unavailable", "We are currently under maintenance.");
 
 function show_error($response_code, $status_code, $message) 
 {
