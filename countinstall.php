@@ -41,7 +41,7 @@ $row = $statement2->fetch(PDO::FETCH_ASSOC);
 
 return array(
     'swrve_user_id' => $swrve_user_id,
-    'count_install' => $row['count_install'],
+    'count_install' => intval($row['count_install']),
     'error' => 0,
     'message' => 'Success'
 );
