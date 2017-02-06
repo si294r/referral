@@ -52,7 +52,7 @@ if ($array === FALSE) {
 }
 
 return array(
-    'shorten_id' => $array['shorten_id'],
+    'shorten_id' => intval($array['shorten_id']),
     'swrve_user_id' => $array['swrve_user_id'],
     'shorten_url_1' => "http://almigh.tv/".base_convert((int)"{$array['shorten_id']}1" + 100000, 10, 32),
     'shorten_url_2' => "http://almigh.tv/".base_convert((int)"{$array['shorten_id']}2" + 100000, 10, 32),
