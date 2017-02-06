@@ -21,12 +21,18 @@ if (is_numeric($count_install)) {
     );
 }
 
-include("/var/www/redshift-config2.php");
-$connection = new PDO(
-    "pgsql:dbname=$rdatabase;host=$rhost;port=$rport",
-    $ruser, $rpass, array(PDO::ATTR_PERSISTENT => true)
-);
+//include("/var/www/redshift-config2.php");
+//$connection = new PDO(
+//    "pgsql:dbname=$rdatabase;host=$rhost;port=$rport",
+//    $ruser, $rpass, array(PDO::ATTR_PERSISTENT => true)
+//);
 
+include("/var/www/mysql-config.php");
+$connection = new PDO(
+    "mysql:dbname=$mydatabase;host=$myhost;port=$myport",
+    $myuser, $mypass, array(PDO::ATTR_PERSISTENT => true)
+);
+    
 // get count install
 $sql2 = "SELECT count(*) as count_install FROM referral_almighty_ios WHERE referrer = :user_id";
 $statement2 = $connection->prepare($sql2);

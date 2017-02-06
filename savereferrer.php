@@ -20,12 +20,18 @@ if (trim($data['referrer']) == "") {
     );
 }
 
-include("/var/www/redshift-config2.php");
-$connection = new PDO(
-    "pgsql:dbname=$rdatabase;host=$rhost;port=$rport",
-    $ruser, $rpass, array(PDO::ATTR_PERSISTENT => true)
-);
+//include("/var/www/redshift-config2.php");
+//$connection = new PDO(
+//    "pgsql:dbname=$rdatabase;host=$rhost;port=$rport",
+//    $ruser, $rpass, array(PDO::ATTR_PERSISTENT => true)
+//);
 
+include("/var/www/mysql-config.php");
+$connection = new PDO(
+    "mysql:dbname=$mydatabase;host=$myhost;port=$myport",
+    $myuser, $mypass, array(PDO::ATTR_PERSISTENT => true)
+);
+    
 // create record if not exists
 $sql1 = "INSERT INTO referral_almighty_ios (swrve_user_id)
 SELECT :user_id1 WHERE NOT EXISTS (
